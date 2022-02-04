@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_principal"
+            android:title="@string/home"
+            android:icon="@drawable/ic_home"/>
+
+        <item
+            android:id="@+id/nav_meu_perfil"
+            android:title="@string/my_profile"
+            android:icon="@drawable/ic_profile"/>
+
+        <item
+            android:id="@+id/nav_vender"
+            android:title="@string/sell"
+            android:icon="@drawable/ic_sell"/>
+
+        <item
+            android:id="@+id/nav_sair"
+            android:title="@string/logout"
+            android:icon="@drawable/ic_logout"/>
+    </group>
+
+    <item android:title="Communicate">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_sobre"
+                android:title="@string/about"
+                android:icon="@drawable/ic_about"/>
+
+            <item
+                android:id="@+id/nav_comentario"
+                android:title="@string/feedback"
+                android:icon="@drawable/ic_feedback"/>
+
+            <!--<item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="@string/share" />-->
+        </menu>
+
+    </item>
+
+</menu>
