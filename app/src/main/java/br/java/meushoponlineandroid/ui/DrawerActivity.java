@@ -7,13 +7,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import br.java.meushoponlineandroid.R;
+import br.java.meushoponlineandroid.fragment.ComentarioFragmento;
 import br.java.meushoponlineandroid.fragment.HomeFragmento;
+import br.java.meushoponlineandroid.fragment.PerfilFragmento;
+import br.java.meushoponlineandroid.fragment.SobreFragmento;
+import br.java.meushoponlineandroid.fragment.VenderFragmento;
 
 public class DrawerActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener{
@@ -52,31 +58,32 @@ public class DrawerActivity extends AppCompatActivity implements
 
             case R.id.nav_meu_perfil:
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frag_container , new HomeFragmento()).commit();
+                        R.id.frag_container , new PerfilFragmento()).commit();
                 break;
 
             case R.id.nav_vender:
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frag_container , new HomeFragmento()).commit();
+                        R.id.frag_container , new VenderFragmento()).commit();
                 break;
 
             case R.id.nav_sair:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frag_container , new HomeFragmento()).commit();
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, EntrarActivity.class));
                 break;
 
             case R.id.nav_sobre:
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frag_container , new HomeFragmento()).commit();
+                        R.id.frag_container , new SobreFragmento()).commit();
                 break;
 
             case R.id.nav_comentario:
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frag_container , new HomeFragmento()).commit();
+                        R.id.frag_container , new ComentarioFragmento()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
-        return false;
+        return true;
     }
 
     @Override

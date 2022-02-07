@@ -258,11 +258,11 @@ public class ComprarFragmento extends Fragment {
     }
     private void enviarEmailParaVendedor() {
         String email = sEmail;
-        String subject = "[xxxx] Pedido de produto " + pNome;
+        String subject = "[ teste] Pedido de produto " + pNome;
         String msg = "unknown-user";
         if (bNome != "")
             msg = bNome;
-        String agradecimentoMsg = "\n\nObrigado por usar o xxx :)";
+        String agradecimentoMsg = "\n\nObrigado por usar o teste :)";
         String autoMsg =
                 "\n\nEste é um e-mail gerado automaticamente. Por favor não responda esse email.";
         String mensagem = "Olá " + sNome + ". " + msg + " está solicitando seu produto \" " + pNome + "\".Aguarde mais resposta de " + msg + " .Se quiser pode escrever para " + msg + " no id de e-mail" + bEmail + " ." + agradecimentoMsg + autoMsg;
@@ -270,8 +270,8 @@ public class ComprarFragmento extends Fragment {
     }
     private void enviarEmailParaComprador() {
         String email = bEmail;
-        String subject = "[xxxx] Solicitação bem-sucedida para " + pNome;
-        String agradecimentoMsg = "\n\nObrigado por usar xxxx :)";
+        String subject = "[teste] Solicitação bem-sucedida para " + pNome;
+        String agradecimentoMsg = "\n\nObrigado por usar teste :)";
         String autoMsg = "\n\nEste é um e-mail gerado automaticamente. Por favor não responda esse email.";
         String mensagem = "Hello " + bNome + ". You have requested " + sNome  +" for \"" + pNome + "\". You can send message to " + sNome + " in the app by clicking on message button." + agradecimentoMsg + autoMsg ;
 

@@ -1,6 +1,8 @@
 package br.java.meushoponlineandroid.model;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class ConexaoDeRede {
 
@@ -21,7 +23,12 @@ public class ConexaoDeRede {
 
     public static boolean estaConectadoNaRedeMovel(Context context) {
 
-        return true;
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null &&
+                networkInfo.isConnectedOrConnecting() &&
+                networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+
     }
 
     public static boolean exibirDialogoDeErroSemInternetDisponivel(Context context) {

@@ -26,7 +26,7 @@ public class ImagemAdapter extends RecyclerView.Adapter<ImagemAdapter.ImagemView
     private Context mContext;
     private List<Envio> meusEnvios;
 
-    private ImagemAdapter(Context context, List<Envio> envios) {
+    public ImagemAdapter(Context context, List<Envio> envios) {
         mContext = context;
         meusEnvios = envios;
 
