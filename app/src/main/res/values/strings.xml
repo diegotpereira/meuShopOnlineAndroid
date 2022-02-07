@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">meuShopOnlineAndroid</string>
+
+
+    <string name="email">email</string>
+    <string name="password">senha</string>
+    <string name="don_t_have_account_sign_up">Não possui uma conta? Inscrever-se</string>
+    <string name="login">Login</string>
+    <string name="forgot_pass">Esqueceu a senha? Redefinir</string>
+
+    <string name="navigation_drawer_open">Abrir gaveta de navegação</string>
+    <string name="navigation_drawer_close">Fechar gaveta de navegação</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="home">Principal</string>
+    <string name="about">Sobre</string>
+    <string name="share">Compartilhado</string>
+    <string name="my_profile">Perfil</string>
+    <string name="sell">Vender</string>
+    <string name="feedback">Comentários</string>
+    <string name="logout">Sair</string>
+
+
+    <string name="juggler">Bem vindo ao Shopping Online</string>"
+
+    <string name="produto_nome">Produto nome</string>
+
+
+    <string name="intro">Uma plataforma online comprarem e venderem produtos.</string>
+    <string name="our_team">Our Team</string>
+    <string name="k">"Nome    :    Diego   "</string>
+</resources>
