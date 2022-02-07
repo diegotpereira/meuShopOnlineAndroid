@@ -1,66 +1,87 @@
 package br.java.meushoponlineandroid.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import br.java.meushoponlineandroid.R;
+import br.java.meushoponlineandroid.model.EnviarEmail;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ComentarioFragmento#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ComentarioFragmento extends Fragment {
+public class ComentarioFragmento extends Fragment implements View.OnClickListener{
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private EditText editarTextoMensagem;
+    private Button btnEnviar;
+    private String Nome;
+    private String Email;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ComentarioFragmento() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ComentarioFragmento.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ComentarioFragmento newInstance(String param1, String param2) {
-        ComentarioFragmento fragment = new ComentarioFragmento();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragmento_comentario, container, false);
+
+        editarTextoMensagem = (EditText) v.findViewById(R.id.edit_texto_message);
+        btnEnviar = (Button) v.findViewById(R.id.btn_enviar);
+        btnEnviar.setOnClickListener(this);
+
+        Nome = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        Email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragmento_comentario, container, false);
+        return v;
+    }
+
+    private void enviarEmail() {
+        String email = "diegotestefirebased@gmail.com";
+        String destinatario = "[Comentário] " + Nome;
+        String mensagem = editarTextoMensagem.getText().toString().trim() + "\n\nenviado por " + Email;
+        EnviarEmail sm = new EnviarEmail(getActivity(), email, destinatario, mensagem);
+        sm.execute();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (editarTextoMensagem.getText().toString().length() < 1) {
+            editarTextoMensagem.setError("A mensagem não pode estar vazia.");
+            editarTextoMensagem.requestFocus();
+
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Comentário");
+        builder.setMessage("Seu feedback é muito valioso para nós.");
+
+        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                enviarEmail();
+
+                editarTextoMensagem.setText("");
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                editarTextoMensagem.setText("");
+
+                Toast.makeText(getActivity(), "Mensagem descartada", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog ad = builder.create();
+        ad.show();
     }
 }
