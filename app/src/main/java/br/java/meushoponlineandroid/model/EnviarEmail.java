@@ -3,7 +3,6 @@ package br.java.meushoponlineandroid.model;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.Properties;
